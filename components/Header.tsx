@@ -11,10 +11,13 @@ import Link from "next/link";
 import React from "react";
 import Form from "next/form";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
+import useBasketStore from "@/lib/store";
 
 const Header = () => {
   const { user } = useUser();
-  console.log(user);
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+  );
 
   return (
     <header className="flex flex-wrap items-center justify-between px-4 py-2">
@@ -44,6 +47,9 @@ const Header = () => {
             className="relative flex flex-1 items-center justify-center space-x-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 sm:flex-none sm:justify-start"
           >
             <TrolleyIcon className="size-6" />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {itemCount}
+            </span>
             <span>My Basket</span>
           </Link>
 
