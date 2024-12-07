@@ -532,7 +532,7 @@
                 },
                 "optional": true
               },
-              "qiantity": {
+              "quantity": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "number"
